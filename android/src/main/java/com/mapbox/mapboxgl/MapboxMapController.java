@@ -42,7 +42,11 @@ import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
 import com.mapbox.mapboxsdk.location.OnCameraTrackingChangedListener;
 import com.mapbox.mapboxsdk.location.modes.CameraMode;
 import com.mapbox.mapboxsdk.location.modes.RenderMode;
-import com.mapbox.mapboxsdk.maps.MapView;
+//import com.mapbox.mapboxsdk.maps.MapView;
+import ir.map.sdk_map.Mapir;
+import ir.map.sdk_map.maps.MapView;
+import ir.map.sdk_map.MapirStyle;
+
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.MapboxMapOptions;
 import com.mapbox.mapboxsdk.offline.OfflineManager;
@@ -150,6 +154,7 @@ final class MapboxMapController
       if (token == null || token.isEmpty()) {
         throw new NullPointerException();
       }
+      Mapir.getInstance(context, token);
       return token;
     } catch (Exception e) {
       Log.e(TAG, "Failed to find an Access Token in the Application meta-data. Maps may not load correctly. " +
@@ -292,8 +297,8 @@ final class MapboxMapController
         mapboxMap.getStyle().addImage(id, bitmap);
       }
     });
-
-    setStyleString(styleStringInitial);
+    mapboxMap.setStyle(new Style.Builder().fromUri(MapirStyle.MAIN_MOBILE_VECTOR_STYLE),onStyleLoadedCallback);
+//    setStyleString(styleStringInitial);
     // updateMyLocationEnabled();
   }
 

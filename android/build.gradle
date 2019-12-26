@@ -28,6 +28,7 @@ android {
     defaultConfig {
         minSdkVersion 20
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     lintOptions {
         disable 'InvalidPackage'
@@ -39,9 +40,11 @@ android {
     dependencies {
         implementation "com.mapbox.mapboxsdk:mapbox-android-sdk:8.4.0"
         implementation "com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v8:0.7.0"
+        implementation 'ir.map:map-sdk:4.0.0'
     }
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+
 }
